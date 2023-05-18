@@ -14628,6 +14628,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 842321251609402674, guid: b6c50b7ee09d5db4cb7b5e94b8483cd3, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 8858443367754173722, guid: 3c97912a0602f84429a731dfb583b157, type: 3}
+    - target: {fileID: 842321251609402674, guid: b6c50b7ee09d5db4cb7b5e94b8483cd3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2086649280376018089, guid: b6c50b7ee09d5db4cb7b5e94b8483cd3, type: 3}
       propertyPath: m_Name
       value: Turret1

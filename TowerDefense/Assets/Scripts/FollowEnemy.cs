@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class FollowEnemy : MonoBehaviour
@@ -8,7 +10,13 @@ public class FollowEnemy : MonoBehaviour
     public float speed = 20f;
     public float turretRadius = 10f;
     private Transform target;
+    private Transform[] cannon;
+    [SerializeField] private GameObject bullet;
 
+    private void Start()
+    {
+        cannon = this.GetComponentsInChildren<Transform>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -21,7 +29,7 @@ public class FollowEnemy : MonoBehaviour
 
     private bool isEnemyInRange()
     {
-        Collider[] enemiesinRange = Physics.OverlapSphere(transform.position, turretRadius, 6);
+        Collider[] enemiesinRange = Physics.OverlapSphere(transform.position, turretRadius, LayerMask.GetMask("Enemy"));
         if (enemiesinRange.Length == 0)
         {
             return false;
@@ -52,5 +60,21 @@ public class FollowEnemy : MonoBehaviour
         Debug.DrawRay(transform.position, newDirection, Color.red);
         
         transform.rotation = Quaternion.LookRotation(newDirection);
+        StartCoroutine(Fire(newDirection));
+    }
+
+    private IEnumerator Fire(Vector3 direction)
+    {
+        foreach (var barrel in cannon)
+        {
+            Instantiate(bullet, barrel.position, Quaternion.LookRotation(direction)).GetComponent<Rigidbody>().AddForce(direction*5000, ForceMode.Acceleration);
+        }
+
+        yield return new WaitForSeconds(1);
+    }
+
+    private void destroyAfterTTL(GameObject bullet)
+    {
+        
     }
 }
