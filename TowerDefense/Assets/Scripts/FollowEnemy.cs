@@ -12,6 +12,9 @@ public class FollowEnemy : MonoBehaviour
     private Transform target;
     private Transform[] cannon;
     [SerializeField] private GameObject bullet;
+    private bool firingRange = false;
+    private bool enemyInRange = false;
+    private Vector3 targetDirection;
 
     private void Start()
     {
@@ -23,7 +26,14 @@ public class FollowEnemy : MonoBehaviour
     {
         if (isEnemyInRange())
         {
+            enemyInRange = true;
             TrackEnemy();
+            firingRange = true;
+        }
+        else
+        {
+            enemyInRange = false;
+            firingRange = false;
         }
     }
 
@@ -50,7 +60,7 @@ public class FollowEnemy : MonoBehaviour
 
     private void TrackEnemy()
     {
-        Vector3 targetDirection = target.transform.position - transform.position;
+        targetDirection = target.transform.position - transform.position;
         
         float singleStep = speed * Time.deltaTime;
 
@@ -60,21 +70,25 @@ public class FollowEnemy : MonoBehaviour
         Debug.DrawRay(transform.position, newDirection, Color.red);
         
         transform.rotation = Quaternion.LookRotation(newDirection);
-        StartCoroutine(Fire(newDirection));
+        if (!firingRange)
+        {
+            StartCoroutine(Fire(singleStep));            
+        }
     }
 
-    private IEnumerator Fire(Vector3 direction)
+    private IEnumerator Fire(float singleStep)
     {
-        foreach (var barrel in cannon)
+        yield return new WaitForSeconds(0.25f);
+        while (enemyInRange)
         {
-            Instantiate(bullet, barrel.position, Quaternion.LookRotation(direction)).GetComponent<Rigidbody>().AddForce(direction*5000, ForceMode.Acceleration);
+            foreach (var barrel in cannon)
+            {
+                Vector3 direction = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+                Instantiate(bullet, barrel.position, Quaternion.LookRotation(direction)).GetComponent<Rigidbody>().AddForce(direction*5000, ForceMode.Acceleration);
+            }
+
+            yield return new WaitForSeconds(0.5f);
         }
 
-        yield return new WaitForSeconds(1);
-    }
-
-    private void destroyAfterTTL(GameObject bullet)
-    {
-        
     }
 }
