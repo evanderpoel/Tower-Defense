@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Bullet"))
         {
             DecreaseHealth(other.gameObject.GetComponent<BulletBehaviour>().damage);
+            Destroy(other.gameObject);
         }
     }
 

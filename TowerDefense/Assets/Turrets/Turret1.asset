@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turretName: Turret1
   turretPrefab: {fileID: 2086649280376018089, guid: b6c50b7ee09d5db4cb7b5e94b8483cd3, type: 3}
+  cannotPlaceTurretPrefab: {fileID: 2086649280376018089, guid: ae7071db795cf3d4fbeaad2baea14ed8, type: 3}
+  canPlaceTurretPrefab: {fileID: 2086649280376018089, guid: ff4f0d6b081fdb048983290fef549b8d, type: 3}

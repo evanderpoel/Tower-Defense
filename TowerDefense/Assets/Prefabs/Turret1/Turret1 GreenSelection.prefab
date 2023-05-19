@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3425105058823689702}
   m_Layer: 0
-  m_Name: Turret1
+  m_Name: Turret1 GreenSelection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 589ac275c4b63a44a9648878a835fe2b, type: 2}
+  - {fileID: 2100000, guid: 944dedf8d7d49e14da97c31bdddb810d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -195,6 +195,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: d148bd46a5a4c4e4d96a7c02442100fc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: d148bd46a5a4c4e4d96a7c02442100fc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 944dedf8d7d49e14da97c31bdddb810d, type: 2}
+    - target: {fileID: 2300006, guid: d148bd46a5a4c4e4d96a7c02442100fc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 944dedf8d7d49e14da97c31bdddb810d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d148bd46a5a4c4e4d96a7c02442100fc, type: 3}
 --- !u!4 &2724323879421648165 stripped
@@ -219,5 +231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4f4856ebe66c54b9f328781b2a4b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   speed: 20
+  turretRadius: 10
+  bullet: {fileID: 0}

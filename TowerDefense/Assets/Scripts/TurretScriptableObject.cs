@@ -4,7 +4,13 @@ using UnityEngine;
 public class TurretScriptableObject : ScriptableObject
 {
     public string turretName;
+    public float turretDamage;
+    public string turretInfo;
 
     public GameObject turretPrefab;
+
+    public GameObject cannotPlaceTurretPrefab;
+
+    public GameObject canPlaceTurretPrefab;
 
 }
