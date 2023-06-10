@@ -122,3 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  ps: {fileID: 5587622791917584807, guid: c93b8b5339365324dbbb751d5894b625, type: 3}

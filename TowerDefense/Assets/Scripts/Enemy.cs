@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float health;
+    public ParticleSystem ps;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +22,14 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            Destroy(gameObject);
+            KillEnemy();
         }
+    }
+
+    private void KillEnemy()
+    {
+        Instantiate(ps, this.transform);
+        ps.Play();
+        Destroy(gameObject);
     }
 }
